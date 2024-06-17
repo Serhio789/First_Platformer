@@ -6,6 +6,7 @@ namespace Platformer.Inputs
 
         public const string HORIZONTAL_AXIS = "Horizontal";
         public const string JAMP_BUTTON = "Jump";
+        
 
         #endregion
     }
