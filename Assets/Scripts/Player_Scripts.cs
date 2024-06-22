@@ -11,12 +11,13 @@ namespace Platformer.Inputs
     [RequireComponent(typeof(Rigidbody2D))]
     public class Player_Scripts : MonoBehaviour
     {
-        [SerializeField, Range(0, 10)]  private float Speed = 2.0f;
-        [SerializeField] private Rigidbody2D player_Rigidbody;
-        [SerializeField] private Vector2 moveCheck;
+        [SerializeField] private float Speed = 2.0f;
+        private Rigidbody2D player_Rigidbody;
+        private Vector2 moveCheck;
         private Animator _anim;
         [SerializeField] private SpriteRenderer player;
         [SerializeField] private float jamp_Fors;
+        [SerializeField] private float jamp_Trigger_Radius;
         [SerializeField] private Transform graundTransform;
         private bool jump;
         [SerializeField] private LayerMask graundMask;
@@ -33,11 +34,14 @@ namespace Platformer.Inputs
         }
         private void FixedUpdate()
         {
+            // Реализация прыжка 
             positionNow = player_Rigidbody.transform.position.y;
             Vector2 overlapCirclePosition = graundTransform.position;
             MoveCharacter();
-            jump = Physics2D.OverlapCircle(overlapCirclePosition, jamp_Fors, graundMask);
+            jump = Physics2D.OverlapCircle(overlapCirclePosition, jamp_Trigger_Radius, graundMask);
             JumpCharacter(jump);
+
+            // Анимация для прыжка и падений
 
             float difference = positionNow - positionBefor;
             if (difference > 0.01)
@@ -58,6 +62,8 @@ namespace Platformer.Inputs
             }
 
             positionBefor = positionNow;
+
+            // Реализация движения 
 
             float harizontal = Input.GetAxis(GlobalStringVars.HORIZONTAL_AXIS);
             float mod_harizontal = MathF.Sqrt(harizontal * harizontal);
