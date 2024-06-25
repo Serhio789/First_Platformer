@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Graund
+  - Damageable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Graund
   - Player
   - Dinamit
-  - 
+  - Paticle
   - 
   - 
   - 
