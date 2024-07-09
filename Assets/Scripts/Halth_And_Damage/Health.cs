@@ -10,13 +10,13 @@ public class Health : MonoBehaviour
     [SerializeField] private float max_Health;
     [SerializeField] private float curent_Halth;
     [SerializeField] private bool is_Player;
+    [SerializeField] private bool Show_HP;
     [SerializeField] private Image strip_HP_Player;
     public GameObject particle;
-    private bool is_Allive;
+    private  bool is_Allive;
     private float time_Destroy = 5;
     private Animator _anim;
     private SpriteRenderer sprite_A;
-
 
     private void Awake()
     {
@@ -54,16 +54,21 @@ public class Health : MonoBehaviour
             }
             else
             {
-                //Time.timeScale = 0.1f;
+                Time.timeScale = 0.1f;
                 GetComponent<Player_Scripts>().Dead_Player(is_Allive);
             }
         }
-        if(is_Player)
+        if(Show_HP)
             Indicator_Health(curent_Halth);
     }
 
     private void Indicator_Health(float helth)
     {
-        strip_HP_Player.fillAmount = helth / 100;
+        strip_HP_Player.fillAmount = helth / max_Health;
+    }
+
+    public bool Check_Alive()
+    {
+        return is_Allive;
     }
 }

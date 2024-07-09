@@ -43,7 +43,7 @@ public class Enemi_Scripts : MonoBehaviour
     {
         _anim.SetBool("Attack", true);
         time_Attack -= Time.deltaTime;
-        if (time_Attack < 0)
+        if (time_Attack < 0 && gameObject.GetComponent<Health>().Check_Alive())
         {
             Flip_SpriteRenderer(Worm);
             GameObject currentBullet = Instantiate(bullet, new_Point_Attack, Quaternion.identity);

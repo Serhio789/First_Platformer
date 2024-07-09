@@ -41,8 +41,8 @@ namespace Platformer.Inputs
                 // Реализация прыжка 
                 positionNow = player_Rigidbody.transform.position.y;
                 Vector2 overlapCirclePosition = graundTransform.position;
-                MoveCharacter();
                 jump = Physics2D.OverlapCircle(overlapCirclePosition, jamp_Trigger_Radius, graundMask);
+                MoveCharacter(jump);
                 JumpCharacter(jump);
 
                 // Анимация для прыжка и падений
@@ -68,7 +68,6 @@ namespace Platformer.Inputs
                 positionBefor = positionNow;
 
                 // Реализация движения 
-
                 float harizontal = Input.GetAxis(GlobalStringVars.HORIZONTAL_AXIS);
                 float mod_harizontal = MathF.Sqrt(harizontal * harizontal);
                 if (harizontal != 0)
@@ -88,7 +87,7 @@ namespace Platformer.Inputs
             is_Allive = alive;
         }
 
-        private void MoveCharacter()
+        private void MoveCharacter(bool jump)
         {
             player_Rigidbody.AddForce(moveCheck * Speed);
         }
