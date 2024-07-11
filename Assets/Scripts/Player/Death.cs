@@ -9,7 +9,10 @@ public class Death : MonoBehaviour
     private void FixedUpdate()
     {
         if (!gameObject.GetComponent<Health>().Check_Alive())
+        {
             restart.SetActive(true);
+            
+        }
     }
 
 }

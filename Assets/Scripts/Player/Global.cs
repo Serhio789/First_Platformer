@@ -9,6 +9,8 @@ namespace Platformer.Inputs
 
         public const string Attack_1 = "Fire1";
         public const string Attack_2 = "Fire2";
+        const int start_coint = 0;
+        public static int global_count_coints = start_coint;
         #endregion
     }
 }

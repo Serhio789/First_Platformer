@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 4699096455546791504}
   - component: {fileID: 3647017782972351914}
   - component: {fileID: 7921863262019234563}
+  - component: {fileID: 775778165162507711}
   m_Layer: 7
   m_Name: Player
   m_TagString: Damageable
@@ -733,6 +734,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restart: {fileID: 0}
+--- !u!114 &775778165162507711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182239776319937980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5903865fa59904593d3c803d443f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  player: {fileID: 2439978754331436921}
 --- !u!1 &5650374423567574599
 GameObject:
   m_ObjectHideFlags: 0

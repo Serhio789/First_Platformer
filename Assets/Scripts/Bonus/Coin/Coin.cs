@@ -1,6 +1,9 @@
+using Platformer.Inputs;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
 {
@@ -8,6 +11,7 @@ public class Coin : MonoBehaviour
     private Animator _anim;
     private float time_Destroy = 3;
     private bool _isDestroyed = false;
+    [SerializeField] private Text text_count;
 
     private void Awake()
     {
@@ -26,7 +30,10 @@ public class Coin : MonoBehaviour
         {
             time_Destroy -= Time.deltaTime;
             if (time_Destroy < 0)
+            {
+                GlobalStringVars.global_count_coints++;
                 Destroy(gameObject);
+            }
         }
     }
 }

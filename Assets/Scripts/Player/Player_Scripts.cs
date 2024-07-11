@@ -11,7 +11,7 @@ namespace Platformer.Inputs
     {
         [SerializeField] private float Speed = 2.0f;
         private Rigidbody2D player_Rigidbody;
-        private Vector2 moveCheck;
+        private float moveCheck;
         private Animator _anim;
         [SerializeField] private SpriteRenderer player;
         [SerializeField] private float jamp_Fors;
@@ -73,7 +73,7 @@ namespace Platformer.Inputs
                 if (harizontal != 0)
                 {
                     player.flipX = harizontal < 0;
-                    moveCheck = new Vector2(harizontal, 0);
+                    moveCheck = harizontal;
                 }
                 if (jump)
                     _anim.SetFloat("is_Run", mod_harizontal);
@@ -89,7 +89,8 @@ namespace Platformer.Inputs
 
         private void MoveCharacter(bool jump)
         {
-            player_Rigidbody.AddForce(moveCheck * Speed);
+            //player_Rigidbody.AddForce(moveCheck * Speed);
+            player_Rigidbody.velocity = new Vector2(moveCheck * Speed, player_Rigidbody.velocity.y);  
         }
         private void JumpCharacter(bool jump)
         {

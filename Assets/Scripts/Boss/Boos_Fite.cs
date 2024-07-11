@@ -19,7 +19,7 @@ public class Boos_Fite : MonoBehaviour
     {
         boss.SetActive(false);
     }
-    private void OnTriggerExit2D(Collider2D fight)
+    private void OnTriggerEnter2D(Collider2D fight)
     {
         is_ivent = true;
     }
@@ -40,6 +40,7 @@ public class Boos_Fite : MonoBehaviour
                 player_cinemachine.m_Priority = 10;
                 is_ivent = false;
             }
+            Destroy(trigger_fight);
         }
     }
 }

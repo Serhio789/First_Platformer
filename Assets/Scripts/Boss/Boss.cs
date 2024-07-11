@@ -12,8 +12,8 @@ public class Boss : MonoBehaviour
     private const float run_state = 1;
     private const float attack_state = 2;
     private float current_state;
-    private float idle_time=3;
-    private float run_time=1.5f;
+    private float idle_time=3.5f;
+    private float run_time=4f;
     private float attack_time=3.3f;
     [SerializeField] private float triger_attack;
     [SerializeField] private LayerMask player_Mask;
@@ -21,7 +21,7 @@ public class Boss : MonoBehaviour
     private bool attack;
     private Animator _anim;
     [SerializeField] private float speed;
-    private Vector2 moveCheck;
+    private float moveCheck;
     [SerializeField] private GameObject door;
     private void Awake()
     {
@@ -30,7 +30,14 @@ public class Boss : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        moveCheck = new Vector2(player.transform.position.x - rb_boss.transform.position.x, 0);
+        if (player.transform.position.x - rb_boss.transform.position.x > 0)
+            moveCheck = 1;
+        else
+            moveCheck = -1;
+        Vector2 overlapCirclePosition = attackTransform.position;
+        attack = Physics2D.OverlapCircle(overlapCirclePosition, triger_attack, player_Mask);
+        if (attack)
+            current_state = attack_state;
         switch (current_state)
         {
             case idle_state:
@@ -38,21 +45,18 @@ public class Boss : MonoBehaviour
                 if (idle_time <= 0)
                 {
                     current_state = run_state;
-                    idle_time = 3;
+                    idle_time = 2;
                 }
                 break;
             case run_state:
                 run_time -= Time.deltaTime;
-                rb_boss.AddForce(moveCheck * speed, ForceMode2D.Impulse);
-                Vector2 overlapCirclePosition = attackTransform.position;
-                attack = Physics2D.OverlapCircle(overlapCirclePosition, triger_attack, player_Mask);
-                if (attack)
-                    current_state = attack_state;
+                rb_boss.velocity = new Vector2(moveCheck * speed, rb_boss.velocity.y);
+                
 
                 if (run_time <= 0)
                 {
                     current_state = idle_state;
-                    run_time = 1.5f;
+                    run_time = 4f;
                 }
                     break;
             case attack_state:

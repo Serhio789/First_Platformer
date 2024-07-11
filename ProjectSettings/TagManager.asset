@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Graund
   - Damageable
+  - Lawa
   layers:
   - Default
   - TransparentFX
